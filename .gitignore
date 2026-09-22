@@ -1,0 +1,23 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+
+# --- Virtuelle Umgebungen ---
+# Niemals ins Repo: hunderte MB, maschinenspezifisch, jederzeit
+# aus requirements.txt wiederherstellbar.
+.venv/
+venv/
+env/
+
+# --- macOS ---
+.DS_Store
+
+# --- Erzeugte Rohdaten ---
+# Messreihen und Simulationsausgaben werden vom Code erzeugt,
+# nicht von Hand gepflegt. Gehoert nicht in die Versionskontrolle.
+*.npz
+*.npy
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
