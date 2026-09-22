@@ -1,0 +1,7 @@
+# Getestet mit Python 3.12.10 auf macOS.
+# Exakte Versionen: nur fuer diese Kombination wurde nachgewiesen,
+# dass die Skripte durchlaufen.
+numpy==2.5.1
+matplotlib==3.11.1
+roboticstoolbox-python==1.4.2
+spatialmath-python==1.1.17
