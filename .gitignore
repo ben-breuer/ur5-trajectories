@@ -21,3 +21,6 @@ env/
 # --- Editor / IDE ---
 .vscode/
 .idea/
+
+# --- pytest ---
+.pytest_cache/
