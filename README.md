@@ -100,9 +100,11 @@ python vergleich.py
 Every script is standalone, takes no arguments and prints its results to the terminal.
 The test case sits in the first lines of each file — change `q0`, `q1` or `T` there.
 
-Most scripts print to the terminal and exit. Four of them draw and need a display:
-`plot.py` (regenerates `movej_vs_movel.png`, then shows it), `animate.py` (plays a full
-cycle: MoveJ outbound, MoveL back), `fk.py` and `workspace.py`.
+Most scripts print to the terminal and exit. Five of them draw: `plot.py` (regenerates
+`movej_vs_movel.png`, then shows it), `traj.py`, `workspace.py`, `fk.py` and `animate.py`.
+The first three also run without a display — set `MPLBACKEND=Agg` and they compute, save and
+exit. `fk.py` and `animate.py` use the interactive 3D viewer of `roboticstoolbox` and wait
+for the window to be closed, so they need a real display.
 
 ## Files
 
@@ -154,6 +156,29 @@ Pure kinematics — no dynamics, no torques, no motor model. Joint velocities ar
 against the nominal UR5 limit of 180 °/s, nothing more. The robot is the DH model shipped
 with `roboticstoolbox`, not a calibrated machine. The numbers above belong to this one
 pose pair; the ordering behind them does not.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The suite runs every non-interactive script and checks that it completes, then verifies the
+numbers this README claims — the 121 mm deviation, the 278.7 deg of joint travel, the three
+diverging jerk values, the 2384 deg/s at the wrist singularity, and that the MoveL inverse
+kinematics actually arrives at the goal pose.
+
+That last one matters most: if the IK chain fails to converge somewhere along the path, every
+other MoveL figure is meaningless, and nothing in the output would say so.
+
+The point is not that the code is correct in the abstract — it is that these results stay
+reproducible. The pinned dependency versions will be raised some day, and if a library change
+moves a number, this README would quietly become wrong. Then the suite fails instead.
+
+Scripts are executed in a temporary directory with a non-interactive matplotlib backend, so a
+test run neither opens windows nor touches the working tree. The whole suite takes about a
+dozen seconds.
 
 ## License
 
