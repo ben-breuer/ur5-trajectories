@@ -154,3 +154,7 @@ Pure kinematics — no dynamics, no torques, no motor model. Joint velocities ar
 against the nominal UR5 limit of 180 °/s, nothing more. The robot is the DH model shipped
 with `roboticstoolbox`, not a calibrated machine. The numbers above belong to this one
 pose pair; the ordering behind them does not.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Use it, change it, build on it; keep the copyright notice.
